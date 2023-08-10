@@ -2,8 +2,10 @@ import { MongoClient, ServerApiVersion } from "mongodb"
 import Link from "next/link";
 
 async function DataFetch(){
-    const uri = "mongodb+srv://allensun21527:CUsASbfPWd6A2ZNz@ratingsdata.6eymg7t.mongodb.net/?retryWrites=true&w=majority";
-
+    var uri = process.env.DATABASE_URL;
+    if(uri == undefined){
+        uri = "";
+    }
     const client = new MongoClient(uri,  {
         serverApi: {
             version: ServerApiVersion.v1,

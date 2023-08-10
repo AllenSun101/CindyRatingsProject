@@ -3,8 +3,10 @@ import { NextRequest } from "next/server";
 import { NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest){
-    const uri: string = "mongodb+srv://allensun21527:CUsASbfPWd6A2ZNz@ratingsdata.6eymg7t.mongodb.net/?retryWrites=true&w=majority";
-
+    var uri = process.env.DATABASE_URL;
+    if(uri == undefined){
+        uri = "";
+    }
     const client = new MongoClient(uri,  {
         serverApi: {
             version: ServerApiVersion.v1,
